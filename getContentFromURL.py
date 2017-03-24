@@ -17,14 +17,17 @@ def failurl(name):
 	return "Please enter a valid url"
 	
 @app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def getContentFromURL(path):
-	article = Article(path)
+@app.route('/<path:url>')
+def getContentFromURL(url):
+	article = Article(url)
 	article.download()
 	article.parse()
 	article.nlp()
 	article.summary
-	return article.summary 
+	strKeyword = ""
+	for item in article.keywords:
+		strKeyword += item + " "
+	return strKeyword 
 
 
 
