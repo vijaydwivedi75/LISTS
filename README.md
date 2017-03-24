@@ -18,3 +18,7 @@ It takes the current Tab URL, crawls the source and extracts the main article.Th
 - Heroku
 - Chrome Extension
 - Search API
+
+
+### Libraries Used
+- [Newspaper](https://github.com/codelucas/newspaper/)
