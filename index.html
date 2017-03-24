@@ -8,6 +8,11 @@
     <script src="jquery.js"></script>
 <script type="text/javascript" src="popup.js"></script>
 <style type="text/css">
+
+
+div#preloader { position: fixed; left: 0; top: 0; z-index: 999; opacity: 0.4; width: 100%; height: 100%; overflow: visible; background: #333 url('http://files.mimoymima.com/images/loading.gif') no-repeat center center; }
+
+
   a{
     text-decoration: none;
     color: black;
@@ -58,7 +63,11 @@
 <body>
 <!-- <h2 id="header">LISTS Addon by <i>- nameSpace</i></h2> -->
 <div id="card_container">
-
+<center><h1 style="color: red;">LISTS loading </h1></center>
+<div style="height:120px;">
+<div id="preloader"></div></div>
+<!-- <h1> &nbsp;&nbsp;Loading similar sites...</h1> -->
 </div>
+<div id="forURL"></div>
 </body>
 </html>
