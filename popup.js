@@ -26,31 +26,50 @@
 /*source = getSource('http://crossorigin.me/http://www.vijaydwivedi.com.np')
 document.write(source);*/
 
+var urlCurrent;
+// Get current URL
+chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true
+}, function(tabs) {
+    // and use that tab to fill in out title and url
+    var tab = tabs[0];
+    document.getElementById('forURL').innerHTML = tab.url;
+   
+});
+urlCurrent = "http://blog.ecellmnnit.in/the-hype-cycle-predict-tech-hype-make-smart-decisions";
+console.log(urlCurrent);
+urlCurrent = "http://localhost:5000/" + urlCurrent;
+
+
+// Extract Keywords from URL
+var keywords = ""
+var xmlhttp1 = new XMLHttpRequest();
+xmlhttp1.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+          keywords = xmlhttp1.responseText;          
+          console.log(keywords);
+    }
+};
+console.log(keywords);
+var URLCurrent = /*"http://crossorigin.me/" +*/ urlCurrent;
+xmlhttp1.open("GET", URLCurrent, true);
+xmlhttp1.send();
+
+
+// Extract json from URL
+jsonURL = "https://www.googleapis.com/customsearch/v1?key=AIzaSyBOfvd0PrNoxbShPJvCjPMqbkzzK3ijmP4&q=" + 
+          keywords + "&cx=010401654321447249722:6jnhkyjk280";
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
           myObj = JSON.parse(this.responseText);
           
-          /*var div = document.getElementsByClassName('card')[0],
-        h2 = div.getElementsByTagName('h5'),
-        p = div.getElementsByTagName('p'),
-        
-        var i = 0;
-       $.each( myObj.items, function() {
-            data +="<div id='card_container'><div class='card'><h2 id='header'><a href='"+
-            +myObj.items[i].link+"''>"+ myObj.items[i].title+"</a>";
-
-              */ /*$.each( value1, function( key, value) {
-                   data +="<div class ='"+ key +"'>"+value+"</div>"; 
-               });
-               i++;
-        }); */
-
 
         for (var i = 0; i < myObj.items.length / 2; i++) {
-          data = "<div id='card'><img src='"+ myObj.items[i].pagemap.cse_thumbnail[0].src +"'/>"
-          data1 = "<h2 id='header'><a target='_blank' href=" + myObj.items[i].link+">" + myObj.items[i].title+"</a></h2>";
-          data2 = "<p id='snippet'>"+myObj.items[i].htmlSnippet+"</p></div>";
+          data = "<a target='_blank' href=" + myObj.items[i].link+"><div id='card'><img src='"+ myObj.items[i].pagemap.cse_thumbnail[0].src +"'/>"
+          data1 = "<h2 id='header'>"+ myObj.items[i].title+"</h2>";
+          data2 = "<p id='snippet'>"+myObj.items[i].htmlSnippet+"</p></div></a>";
           var div = document.getElementById('card_container');
           
           div.innerHTML = div.innerHTML + data + data1 + data2;
@@ -58,7 +77,7 @@ xmlhttp.onreadystatechange = function() {
         }
     }
 };
- 
-/* Here, URL of the JSON file is to be replaced */
-xmlhttp.open("GET", "http://crossorigin.me/http://www.vijaydwivedi.com.np/search.json", true);
+
+jsonURLCROS = "http://crossorigin.me/" + jsonURL;
+xmlhttp.open("GET", jsonURLCROS, true);
 xmlhttp.send();
