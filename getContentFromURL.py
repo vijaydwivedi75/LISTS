@@ -9,9 +9,11 @@
 from flask import Flask,render_template
 import urllib
 from newspaper import Article
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/<name>')
 def failurl(name):
 	return "Please enter a valid url"
