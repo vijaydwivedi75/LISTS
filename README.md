@@ -1,6 +1,6 @@
 # LISTS - Life Is Too Short To Search
 
-A chrome extension that helps you find 'Similar Sites' on the article you are reading.
+A Chrome Extension that helps you find 'Sites with Similar Content' for the article you are reading.
 
 ## HACK IN THE NORTH 2.0
 
@@ -9,13 +9,13 @@ nameSpace**
 
 
 ### How it Works?
-It takes the current Tab URL, crawls the source and extracts the main article.Then it summarizes keywords and uses them in Search API to find similar sites.
+It takes the current Tab URL, crawls the source and extracts the main article. Then it summarizes keywords and uses them in Search API to recommend sites with similar content.
 
 
 ### Technnologies Used
 - JavaScript
 - Python
-- Heroku
+- Flask
 - Chrome Extension
 - Search API
 
