@@ -12,27 +12,8 @@ $(window).load(function(){
 
 });
 
-
-
-    var source;
-    var xmlhttp;
-    function getSource(URL){
-   
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function(){
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-            
-            source = xmlhttp.responseText;
-            var el = document.createElement('html');
-            el.innerHTML = source;
-            console.log(el.getElementsByTagName('a')[2]);
-        }
-    }
-    xmlhttp.open("GET", URL, true);
-    xmlhttp.send();
-    return xmlhttp.responseText;
-}
-
+var source;
+var xmlhttp;
 
 var urlCurrent="";
 var URLC=""
@@ -77,7 +58,6 @@ getURL("address", function(x){
 
     extractKeywords("keys", function(yy){
         keywords = yy;
-        /*console.log(keywords);*/
 
         // Extract json from URL
             jsonURL = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCIYiNTqClcxZK8rdU-AODBJ9KXAvAOnRk&q=" + 
@@ -100,10 +80,13 @@ getURL("address", function(x){
                         data = "<a target='_blank' title='"+ myObj.items[i].displayLink +"' href=" + myObj.items[i].link+"><div id='card'>";
 
                         if( (typeof myObj.items[i].pagemap != 'undefined')){
-                        	if(typeof myObj.items[i].pagemap.cse_image != 'undefined')
-                          		data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
-                          	else
-                          		data+="<img src='icon.png'/>";
+                          if(typeof myObj.items[i].pagemap.cse_image != 'undefined')
+                              data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
+                          else
+                              data+="<img src='icon.png'/>";
+                        }
+                        else{
+                          data+="<img src='icon.png'/>";
                         }
 
 
@@ -125,4 +108,3 @@ getURL("address", function(x){
     
 
 });
-
