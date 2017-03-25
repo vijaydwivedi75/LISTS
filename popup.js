@@ -91,6 +91,11 @@ getURL("address", function(x){
                       
                       var div = document.getElementById('card_container');
                       div.innerHTML = "";
+
+                      if(typeof myObj.items == 'undefined'){
+                        div.innerHTML = "<center><h1>No results found.</h1><center>";
+                      }
+
                       for (var i = 0; i < myObj.items.length; i++) {
                         if(myObj.items[i].link == URLC)
                           continue;
