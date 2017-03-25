@@ -3,8 +3,6 @@
 /*
 * This is the javascript file which is used to implement the functionalities of extension
 */
-
-
 // Pre loader jquery code
 jQuery(document).ready(function($) {  
 
@@ -101,10 +99,14 @@ getURL("address", function(x){
                           continue;
                         data = "<a target='_blank' title='"+ myObj.items[i].displayLink +"' href=" + myObj.items[i].link+"><div id='card'>";
 
-                        if( (typeof myObj.items[i].pagemap != 'undefined') && (typeof myObj.items[i].pagemap.cse_image != 'undefined') ){
-                           data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
+                        if( (typeof myObj.items[i].pagemap != 'undefined')){
+                        	if(typeof myObj.items[i].pagemap.cse_image != 'undefined')
+                          		data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
+                          	else
+                          		data+="<img src='icon.png'/>";
                         }
-                                        
+
+
                         data1 = "<h2 id='header'>"+ myObj.items[i].title+"</h2>";
                         data2 = "<p id='snippet'>"+myObj.items[i].htmlSnippet+"</p></div></a>";
 
