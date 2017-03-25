@@ -37,6 +37,7 @@ $(window).load(function(){
 
 
 var urlCurrent="";
+var URLC=""
 // Get current URL
 function getURL(x, callback){
   chrome.tabs.query({
@@ -54,9 +55,9 @@ function getURL(x, callback){
 
 getURL("address", function(x){
     urlCurrent = x;
+    URLC = x;
     urlCurrent = "http://flask-javascc.herokuapp.com/" + urlCurrent;
-    console.log(urlCurrent);
-
+    
     // Extract Keywords from URL
     var keywords = "";
 
@@ -78,7 +79,7 @@ getURL("address", function(x){
 
     extractKeywords("keys", function(yy){
         keywords = yy;
-        console.log(keywords);
+        /*console.log(keywords);*/
 
         // Extract json from URL
             jsonURL = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCIYiNTqClcxZK8rdU-AODBJ9KXAvAOnRk&q=" + 
@@ -91,17 +92,19 @@ getURL("address", function(x){
                       var div = document.getElementById('card_container');
                       div.innerHTML = "";
                       for (var i = 0; i < myObj.items.length; i++) {
-                      data = "<a target='_blank' href=" + myObj.items[i].link+"><div id='card'>";
+                        if(myObj.items[i].link == URLC)
+                          continue;
+                        data = "<a target='_blank' title='"+ myObj.items[i].displayLink +"' href=" + myObj.items[i].link+"><div id='card'>";
 
-                      if( (typeof myObj.items[i].pagemap != 'undefined') && (typeof myObj.items[i].pagemap.cse_image != 'undefined') ){
-                         data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
-                      }
-                                      
-                      data1 = "<h2 id='header'>"+ myObj.items[i].title+"</h2>";
-                      data2 = "<p id='snippet'>"+myObj.items[i].htmlSnippet+"</p></div></a>";
+                        if( (typeof myObj.items[i].pagemap != 'undefined') && (typeof myObj.items[i].pagemap.cse_image != 'undefined') ){
+                           data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
+                        }
+                                        
+                        data1 = "<h2 id='header'>"+ myObj.items[i].title+"</h2>";
+                        data2 = "<p id='snippet'>"+myObj.items[i].htmlSnippet+"</p></div></a>";
 
-                      div.innerHTML = div.innerHTML + data + data1 + data2;
-                      console.log(data1); 
+                        div.innerHTML = div.innerHTML + data + data1 + data2;
+                        
                     }
                 }
             };
