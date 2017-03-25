@@ -70,7 +70,7 @@ getURL("address", function(x){
                   callbacky(keywords);
             }
         };
-        console.log(keywords);
+        
         var URLCurrent = urlCurrent;
         xmlhttp1.open("GET", URLCurrent, true);
         xmlhttp1.send();
@@ -78,10 +78,10 @@ getURL("address", function(x){
 
     extractKeywords("keys", function(yy){
         keywords = yy;
-
+        console.log(keywords);
 
         // Extract json from URL
-            jsonURL = "https://www.googleapis.com/customsearch/v1?key=AIzaSyBOfvd0PrNoxbShPJvCjPMqbkzzK3ijmP4&q=" + 
+            jsonURL = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCIYiNTqClcxZK8rdU-AODBJ9KXAvAOnRk&q=" + 
                       keywords + "&cx=010401654321447249722:6jnhkyjk280";
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
@@ -90,14 +90,18 @@ getURL("address", function(x){
                       
                       var div = document.getElementById('card_container');
                       div.innerHTML = "";
-                    for (var i = 0; i < myObj.items.length; i++) {
-                      data = "<a target='_blank' href=" + myObj.items[i].link+"><div id='card'><img src='"+ myObj.items[i].pagemap.cse_thumbnail[0].src +"'/>"
+                      for (var i = 0; i < myObj.items.length; i++) {
+                      data = "<a target='_blank' href=" + myObj.items[i].link+"><div id='card'>";
+
+                      if( (typeof myObj.items[i].pagemap != 'undefined') && (typeof myObj.items[i].pagemap.cse_image != 'undefined') ){
+                         data+="<img src='"+ myObj.items[i].pagemap.cse_image[0].src +"'/>";
+                      }
+                                      
                       data1 = "<h2 id='header'>"+ myObj.items[i].title+"</h2>";
                       data2 = "<p id='snippet'>"+myObj.items[i].htmlSnippet+"</p></div></a>";
-                      
-                      
+
                       div.innerHTML = div.innerHTML + data + data1 + data2;
-                      console.log(data2); 
+                      console.log(data1); 
                     }
                 }
             };
