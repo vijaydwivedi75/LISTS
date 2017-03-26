@@ -22,3 +22,7 @@ It takes the current Tab URL, crawls the source and extracts the main article. T
 
 ### Libraries Used
 - [Newspaper](https://github.com/codelucas/newspaper/)
+
+### Download Extension
+ - [LISTS - www.listhint.tech](http://www.listhint.tech)
+ Download the extension '.crx' file from here. Then open 'chrome://extensions' in Chrome and drag the .crx file to install **LISTS**
