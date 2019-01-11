@@ -2,9 +2,10 @@
 
 A Chrome Extension that helps you find 'Sites with Similar Content' for the article you are reading.
 
-### Download
- - [LISTS - www.listhint.tech](http://www.listhint.tech)
- Download the extension '.crx' file from this link. Then open 'chrome://extensions' in Chrome and drag the .crx file there to install **LISTS**
+### Download and Usage
+ Download the extension '.crx' file from this repo. Then open 'chrome://extensions' in Chrome and drag the .crx file there to install **LISTS**.
+ You can also follow instructions at this [link](https://www.cnet.com/how-to/how-to-install-chrome-extensions-manually/)
+
 
 ## HACK IN THE NORTH 2.0
 
